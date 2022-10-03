@@ -1,10 +1,22 @@
-# My Personal Project
+# CPSC 210 Personal Project
 
-## A subtitle
+## Kevin Li
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+This project is envisioned as a film and media tracker used for 
+controlled organization of a set of films that have been watched or wish to be watched. It will be useful to those who
+consume feature-length
+media, TV-shows and animation as a simple but effective method to keep their view history tidy and trackable.
 
-An example of text with **bold** and *italic* fonts.  
+This project is of interest to me as I am an avid film buff and consume a wide variety of media, 
+from short films to documentaries to Japanese and Western animation. I want to create a program
+that is able to track all the shows and films I have watched, and sort them by the criteria I provide. Such a
+program would help me better understand the types of media I enjoy, and at the same time provide me with examples
+of films for certain genres or styles to recommend to those around me.
+
+#### Phase 0
+- As a user, I want to be able to create a list of movies and add it to a list of lists
+- As a user, I want to be able to add a movie with descriptors to a list of movies
+- As a user, I want to be able to remove a movie from a list of movies
+- As a user, I want to be able to select a list to view the films within
+- As a user, I want to be able to select a film to view the criteria within
+- As a user, I want to be able to view the entirety of all my lists of movies at once
