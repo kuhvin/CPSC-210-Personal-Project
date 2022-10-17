@@ -20,12 +20,13 @@ public class FilmList {
     Modifies: this
     Effects: adds the entry to the list
      */
-    public void addEntry(FilmListEntry entry) {
+    public String addEntry(FilmListEntry entry) {
         if (filmList.contains(entry)) {
-            System.out.println("This entry already exists!");
+            return ("This entry already exists!");
         } else {
             filmList.add(entry);
             size += 1;
+            return ("Entry added!");
         }
     }
 
@@ -34,13 +35,13 @@ public class FilmList {
     Modifies: this
     Effects: removes the entry from the list
      */
-    public void removeEntry(FilmListEntry entry) {
+    public String removeEntry(FilmListEntry entry) {
         if (filmList.contains(entry)) {
             filmList.remove(entry);
             size -= 1;
-        } else {
-            System.out.println("Entry does not exist!");
+            return ("Entry removed!");
         }
+        return ("Entry does not exist!");
     }
 
     /*

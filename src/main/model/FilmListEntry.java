@@ -60,7 +60,9 @@ public class FilmListEntry {
     Effects: changes length in minutes
      */
     public void updateLength(int newLength) {
-        this.length = newLength;
+        if (newLength >= 0) {
+            this.length = newLength;
+        }
     }
 
     /*
@@ -69,7 +71,9 @@ public class FilmListEntry {
     Effects: changes the year
      */
     public void updateYear(int newYear) {
-        this.year = newYear;
+        if (newYear >= 0) {
+            this.year = newYear;
+        }
     }
 
     /*
@@ -78,7 +82,9 @@ public class FilmListEntry {
     Effects: changes the rating
     */
     public void updateRating(double newRating) {
-        this.rating = newRating;
+        if (newRating >= 0) {
+            this.rating = newRating;
+        }
     }
 
 

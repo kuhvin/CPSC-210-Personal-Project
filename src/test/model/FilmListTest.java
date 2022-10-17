@@ -31,6 +31,8 @@ public class FilmListTest {
         list1.addEntry(movie2);
 
         assertEquals("Dunkirk, La La Land", list1.getEntries());
+        assertEquals("Entry added!", list1.addEntry(show1));
+        assertEquals("Dunkirk, La La Land, Arcane", list1.getEntries());
     }
 
     @Test
@@ -38,6 +40,7 @@ public class FilmListTest {
         list1.addEntry(movie1);
         list1.addEntry(movie1);
 
+        assertEquals("This entry already exists!", list1.addEntry(movie1));
         assertEquals("Dunkirk", list1.getEntries());
     }
 
@@ -54,8 +57,12 @@ public class FilmListTest {
         assertEquals("La La Land, Arcane", list2.getEntries());
 
         list2.removeEntry(show1);
+        list2.removeEntry(show1);
 
         assertEquals("La La Land", list2.getEntries());
+
+        assertEquals("Entry does not exist!", list2.removeEntry(show1));
+        assertEquals("Entry removed!", list2.removeEntry(movie2));
     }
 
     @Test
@@ -64,5 +71,7 @@ public class FilmListTest {
 
         assertEquals("Arcane, Animation TV, Drama. Runtime: 396 minutes, made in 2021. " +
                 "Rated at 9.6 out of 10.", list1.viewEntry(show1));
+
+        assertEquals("Entry does not exist!", list1.viewEntry(movie1));
     }
 }

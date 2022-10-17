@@ -29,6 +29,10 @@ public class FilmListEntryTest {
 
     @Test
     void updateNameTest() {
+        movie1.updateName("");
+
+        assertEquals("", movie1.getName());
+
         movie1.updateName("Dunkirk");
 
         assertEquals("Dunkirk", movie1.getName());
@@ -53,6 +57,10 @@ public class FilmListEntryTest {
         movie1.updateLength(106);
 
         assertEquals(106, movie1.getLength());
+
+        movie1.updateLength(-200);
+
+        assertEquals(106, movie1.getLength());
     }
 
     @Test
@@ -60,11 +68,19 @@ public class FilmListEntryTest {
         movie2.updateYear(2016);
 
         assertEquals(2016, movie2.getYear());
+
+        movie2.updateYear(-2016);
+
+        assertEquals(2016, movie2.getYear());
     }
 
     @Test
     void updateRatingTest() {
         show1.updateRating(9.8);
+
+        assertEquals(9.8, show1.getRating());
+
+        show1.updateRating(-0.1);
 
         assertEquals(9.8, show1.getRating());
     }
