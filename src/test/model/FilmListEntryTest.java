@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 //Test for FilmEntry class
-class FilmListEntryTest {
+public class FilmListEntryTest {
     FilmListEntry movie1 = new FilmListEntry("Saving Private Ryan", "Film", "War", 20,
             2017, 7.8);
     FilmListEntry movie2 = new FilmListEntry("La La Land", "TV", "Musical", 128,
