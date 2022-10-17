@@ -17,6 +17,18 @@ public class FilmListEntryTest {
     FilmListEntry show1 = new FilmListEntry("Arcane", "Animation TV", "Comedy", 396,
             2021, 3.0);
 
+
+    @Test
+    void testConstructor() {
+        assertEquals("Arcane", show1.getName());
+        assertEquals("Animation TV", show1.getType());
+        assertEquals("Comedy", show1.getGenre());
+        assertEquals(396, show1.getLength());
+        assertEquals(2021, show1.getYear());
+        assertEquals(3.0, show1.getRating());
+    }
+
+
     @Test
     void filmListEntryTest() {
         assertEquals("Saving Private Ryan, Film, War. Runtime: 20 minutes, made in 2017. " +
