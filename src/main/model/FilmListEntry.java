@@ -28,6 +28,15 @@ public class FilmListEntry {
     }
 
     /*
+    Requires: sound entry
+    Effects: returns a string with all criterion within in a readable format
+     */
+    public String getAll() {
+        return (this.name + ", " + this.tom + ", " + this.genre + ". Runtime: " + this.length + " minutes, made in "
+                + this.year + ". Rated at " + this.rating + " out of 10.");
+    }
+
+    /*
     Requires: non-empty string
     Modifies: this
     Effects: changes the name to new desired name
@@ -110,11 +119,6 @@ public class FilmListEntry {
 
     public double getRating() {
         return this.rating;
-    }
-
-    public String getAll() {
-        return (this.name + ", " + this.tom + ", " + this.genre + ". Runtime: " + this.length + " minutes, made in "
-                + this.year + ". Rated at " + this.rating + " out of 10.");
     }
 
 }

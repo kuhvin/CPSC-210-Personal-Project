@@ -72,4 +72,13 @@ public class FilmListTest {
                 "Rated at 9.6 out of 10.", list1.viewEntry(show1));
         assertEquals("Entry does not exist!", list1.viewEntry(movie1));
     }
+
+    @Test
+    public void getEntryTest() {
+        list1.addEntry(movie2);
+        list1.addEntry(movie1);
+
+        assertEquals(movie2, list1.getEntry(0));
+        assertEquals(movie1, list1.getEntry(1));
+    }
 }
