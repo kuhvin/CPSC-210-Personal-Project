@@ -81,4 +81,13 @@ public class FilmListTest {
         assertEquals(movie2, list1.getEntry(0));
         assertEquals(movie1, list1.getEntry(1));
     }
+
+    @Test
+    public void getSizeTest() {
+        list1.addEntry(show1);
+        list1.addEntry(show1);
+        list1.addEntry(movie1);
+
+        assertEquals(2, list1.getSize());
+    }
 }
