@@ -60,7 +60,6 @@ public class FilmListTest {
         list2.removeEntry(show1);
 
         assertEquals("La La Land", list2.getEntries());
-
         assertEquals("Entry does not exist!", list2.removeEntry(show1));
         assertEquals("Entry removed!", list2.removeEntry(movie2));
     }
@@ -71,7 +70,6 @@ public class FilmListTest {
 
         assertEquals("Arcane, Animation TV, Drama. Runtime: 396 minutes, made in 2021. " +
                 "Rated at 9.6 out of 10.", list1.viewEntry(show1));
-
         assertEquals("Entry does not exist!", list1.viewEntry(movie1));
     }
 }
