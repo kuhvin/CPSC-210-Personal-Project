@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.io.*;
 
+//film tracker application
 public class Application {      //some code is inspired from TellerApp
 
     boolean running = true;
