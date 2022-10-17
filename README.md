@@ -15,9 +15,7 @@ of films for certain genres or styles to recommend to those around me.
 
 ### User Stories
 #### Phase 0
-- As a user, I want to be able to create a list of movies and add it to a list of lists
-- As a user, I want to be able to add a movie with descriptors to a list of movies
+- As a user, I want to be able to add movies with descriptors to a list of movies
 - As a user, I want to be able to remove a movie from a list of movies
-- As a user, I want to be able to select a list to view the films within
+- As a user, I want to be able to select a list to view the names of the films within
 - As a user, I want to be able to select a film to view the criteria within
-- As a user, I want to be able to view the entirety of all my lists of movies at once

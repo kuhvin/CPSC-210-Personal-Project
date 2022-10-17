@@ -1,15 +1,15 @@
 package model;
 
+//Creates an entry with name, type of media, genre, length (in minutes), year released, personal rating of out 10
+//(future: perhaps option with name of lead actors/actresses)
 public class FilmListEntry {
-    //Creates an entry with name, type of media, genre, length (in minutes), year released, personal rating of out 10
-    //(future: perhaps option with name of lead actors/actresses)
 
     private String name;
     private String tom;
     private String genre;
     private int length;
     private int year;
-    private int rating;
+    private double rating;
 
 
     /*
@@ -18,7 +18,7 @@ public class FilmListEntry {
              set to lengthOfFilm, year is set to yearReleased, rating is set to personalRating
      */
     public FilmListEntry(String mediaName, String typeOfMedia, String genre,
-                         int lengthOfFilm, int yearReleased, int personalRating) {
+                         int lengthOfFilm, int yearReleased, double personalRating) {
         this.name = mediaName;
         this.tom = typeOfMedia;
         this.genre = genre;
@@ -77,7 +77,7 @@ public class FilmListEntry {
     Modifies: this
     Effects: changes the rating
     */
-    public void updateRating(int newRating) {
+    public void updateRating(double newRating) {
         this.rating = newRating;
     }
 
@@ -102,8 +102,13 @@ public class FilmListEntry {
         return this.year;
     }
 
-    public int getRating() {
+    public double getRating() {
         return this.rating;
+    }
+
+    public String getAll() {
+        return (this.name + ", " + this.tom + ", " + this.genre + ". Runtime: " + this.length + " minutes, made in "
+                + this.year + ". Rated at " + this.rating + " out of 10.");
     }
 
 }
