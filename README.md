@@ -23,3 +23,4 @@ of films for certain genres or styles to recommend to those around me.
 #### Future/Possible User Stories
 - As a user, I want to be able to sort a list of entries by the criteria within the entry
 - As a user, I want to be able to add lists of entries to a larger, overarching list
+- As a user, I want to be able to edit the criteria of entries within the list
