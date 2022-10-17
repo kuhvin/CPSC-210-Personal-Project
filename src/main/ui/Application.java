@@ -25,10 +25,15 @@ public class Application {      //some code is inspired from TellerApp
 
     BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in));
 
+    //Effects: runs application
     public Application() throws IOException {
         runApplication();
     }
 
+    /*
+    Modifies: this
+    Effects: processes user inputs
+     */
     private void runApplication() throws IOException {
 
         while (running) {
@@ -45,7 +50,7 @@ public class Application {      //some code is inspired from TellerApp
     }
 
     // EFFECTS: displays options to user
-    private void menu() {   //inspired from TellerApp
+    private void menu() {       //inspired from TellerApp
         System.out.println("\nSelect option");
         System.out.println("\t1 -> view list");
         System.out.println("\t2 -> add entry");
@@ -110,6 +115,10 @@ public class Application {      //some code is inspired from TellerApp
         System.out.println("Entry added!");
     }
 
+    /*
+    Modifies: this
+    Effects: check is the input is valid, and requests a new input if not
+     */
     private void checkLength() throws IOException {
         if (runtime <= 0) {
             System.out.println("Please enter valid runtime: ");
@@ -117,6 +126,10 @@ public class Application {      //some code is inspired from TellerApp
         }
     }
 
+    /*
+    Modifies: this
+    Effects: check is the input is valid, and requests a new input if not
+     */
     private void checkYear() throws IOException {
         if (year <= 0) {
             System.out.println("Please enter valid year: ");
@@ -124,6 +137,10 @@ public class Application {      //some code is inspired from TellerApp
         }
     }
 
+    /*
+    Modifies: this
+    Effects: check is the input is valid, and requests a new input if not
+     */
     private void checkRating() throws IOException {
         if (rating <= 0) {
             System.out.println("Please enter valid year: ");
