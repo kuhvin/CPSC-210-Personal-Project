@@ -14,11 +14,15 @@ program would help me better understand the types of media I enjoy, and at the s
 of films for certain genres or styles to recommend to those around me.
 
 ### User Stories
-#### Phase 0
+#### Phase 0 & 1
 - As a user, I want to be able to add movies with descriptors to a list of movies
 - As a user, I want to be able to remove a movie from a list of movies
 - As a user, I want to be able to select a list to view the names of the films within
 - As a user, I want to be able to select a film to view the criteria within
+
+#### Phase 2
+- As a user, I want to be able to save my movie lists to a file
+- As a user, I want to be able to load pre-existing movie lists from a file
 
 #### Future/Possible User Stories
 - As a user, I want to be able to sort a list of entries by the criteria within the entry
