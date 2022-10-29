@@ -61,14 +61,14 @@ public class FilmList implements Writable {
         return (joiner.toString());
     }
 
-    @Override
+    @Override                           //from JSONSerializationDemo
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("filmList", entriesToJson());
         return json;
     }
 
-    // EFFECTS: returns things in this filmList as a JSON array
+    // EFFECTS: returns things in this filmList as a JSON array         //from JSONSerializationDemo
     private JSONArray entriesToJson() {
         JSONArray jsonArray = new JSONArray();
 

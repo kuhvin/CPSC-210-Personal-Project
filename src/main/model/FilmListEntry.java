@@ -40,7 +40,7 @@ public class FilmListEntry implements Writable {
     }
 
     /*
-    Effects: sets keys for JSONObject
+    Effects: sets keys for JSONObject               //from JSONSerializationDemo
      */
     @Override
     public JSONObject toJson() {
