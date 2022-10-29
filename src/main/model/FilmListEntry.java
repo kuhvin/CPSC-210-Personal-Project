@@ -1,13 +1,16 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 //Creates an entry with name, type of media, genre, length (in minutes), year released, personal rating of out 10
 //(future: perhaps option with name of lead actors/actresses)
-public class FilmListEntry {
+public class FilmListEntry implements Writable {
 
     private String name;
     private String tom;
     private String genre;
-    private int length;
+    private int runtime;
     private int year;
     private double rating;
 
@@ -22,7 +25,7 @@ public class FilmListEntry {
         this.name = mediaName;
         this.tom = typeOfMedia;
         this.genre = genre;
-        this.length = lengthOfFilm;
+        this.runtime = lengthOfFilm;
         this.year = yearReleased;
         this.rating = personalRating;
     }
@@ -32,8 +35,24 @@ public class FilmListEntry {
     Effects: returns a string with all criterion within in a readable format
      */
     public String getAll() {
-        return (this.name + ", " + this.tom + ", " + this.genre + ". Runtime: " + this.length + " minutes, made in "
+        return (this.name + ", " + this.tom + ", " + this.genre + ". Runtime: " + this.runtime + " minutes, made in "
                 + this.year + ". Rated at " + this.rating + " out of 10.");
+    }
+
+    /*
+    Effects: sets keys for JSONObject
+     */
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("type of media", tom);
+        json.put("genre", genre);
+        json.put("runtime", runtime);
+        json.put("year", year);
+        json.put("rating", rating);
+
+        return json;
     }
 
     /*
@@ -70,7 +89,7 @@ public class FilmListEntry {
      */
     public void updateLength(int newLength) {
         if (newLength >= 0) {
-            this.length = newLength;
+            this.runtime = newLength;
         }
     }
 
@@ -109,8 +128,8 @@ public class FilmListEntry {
         return this.genre;
     }
 
-    public int getLength() {
-        return this.length;
+    public int getRuntime() {
+        return this.runtime;
     }
 
     public int getYear() {

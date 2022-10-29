@@ -2,6 +2,9 @@ package ui;
 
 import model.FilmList;
 import model.FilmListEntry;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +13,15 @@ import java.util.Scanner;
 import java.io.*;
 
 //film tracker application
-public class Application {      //some code is inspired from TellerApp
+public class Application {      //some code is inspired from TellerApp, JSON work inspired from JSONSerializationDemo
 
+    private static final String JSON_STORE = "./data/filmList.json";
     boolean running = true;
     String command = null;
     FilmList filmList = new FilmList();
     Scanner input = new Scanner(System.in);
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     String name;
     String type;
@@ -28,6 +34,8 @@ public class Application {      //some code is inspired from TellerApp
 
     //Effects: runs application
     public Application() throws IOException {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runApplication();
     }
 
@@ -35,14 +43,15 @@ public class Application {      //some code is inspired from TellerApp
     Modifies: this
     Effects: processes user inputs
      */
-    private void runApplication() throws IOException {
+    private void runApplication() throws IOException, FileNotFoundException {
 
         while (running) {
             menu();
             command = input.next();
             command = command.toLowerCase();
 
-            if (command.equals("5")) {
+
+            if (command.equals("7")) {
                 running = false;
             } else {
                 process(command);
@@ -57,7 +66,9 @@ public class Application {      //some code is inspired from TellerApp
         System.out.println("\t2 -> add entry");
         System.out.println("\t3 -> remove entry");
         System.out.println("\t4 -> view entry");
-        System.out.println("\t5 -> quit");
+        System.out.println("\t5 -> save list");
+        System.out.println("\t6 -> load list");
+        System.out.println("\t7 -> quit");
     }
 
     /*
@@ -73,10 +84,15 @@ public class Application {      //some code is inspired from TellerApp
             appRemoveEntry(filmList);
         } else if (command.equals("4")) {
             appViewEntry(filmList);
+        } else if (command.equals("5")) {
+            saveFilmList();
+        } else if (command.equals("6")) {
+            loadFilmList();
         } else {
             System.out.println("Option not available.");
         }
     }
+
 
     //Effects: adds entry to film list
     private void appViewList(FilmList filmList) {
@@ -144,8 +160,8 @@ public class Application {      //some code is inspired from TellerApp
      */
     private void checkRating() throws IOException {
         if (rating <= 0) {
-            System.out.println("Please enter valid year: ");
-            rating = Integer.parseInt(consoleInput.readLine());
+            System.out.println("Please enter valid rating: ");
+            rating = Double.parseDouble(consoleInput.readLine());
         }
     }
 
@@ -183,6 +199,29 @@ public class Application {      //some code is inspired from TellerApp
             if (Objects.equals(view.getName(), viewName)) {
                 System.out.println(filmList.viewEntry(view));
             }
+        }
+    }
+
+    // EFFECTS: saves the film list to file
+    private void saveFilmList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(filmList);
+            jsonWriter.close();
+            System.out.println("Saved film list to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads film list from file
+    private void loadFilmList() {
+        try {
+            filmList = jsonReader.read();
+            System.out.println("Loaded film list from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 }

@@ -1,7 +1,5 @@
 package model;
 
-import model.FilmListEntry;
-
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,7 +21,7 @@ public class FilmListEntryTest {
         assertEquals("Arcane", show1.getName());
         assertEquals("Animation TV", show1.getType());
         assertEquals("Comedy", show1.getGenre());
-        assertEquals(396, show1.getLength());
+        assertEquals(396, show1.getRuntime());
         assertEquals(2021, show1.getYear());
         assertEquals(3.0, show1.getRating());
     }
@@ -68,11 +66,11 @@ public class FilmListEntryTest {
     void updateRuntimeTest(){
         movie1.updateLength(106);
 
-        assertEquals(106, movie1.getLength());
+        assertEquals(106, movie1.getRuntime());
 
         movie1.updateLength(-200);
 
-        assertEquals(106, movie1.getLength());
+        assertEquals(106, movie1.getRuntime());
     }
 
     @Test

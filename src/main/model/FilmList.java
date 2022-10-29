@@ -1,12 +1,17 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.StringJoiner; //from stackoverflow
 
 //Creates lists of films that have already been watched, sortable by the details in FilmListEntry
 //When a WatchLaterList film has been watched, details can be transferred
-public class FilmList {
+public class FilmList implements Writable {
     private int size = 0;
 
     public final ArrayList<FilmListEntry> filmList;
@@ -56,6 +61,24 @@ public class FilmList {
         return (joiner.toString());
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("filmList", entriesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this filmList as a JSON array
+    private JSONArray entriesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (FilmListEntry f : filmList) {
+            jsonArray.put(f.toJson());
+        }
+
+        return jsonArray;
+    }
+
     /*
     Requires: entry exists in film list
     Effects: Returns the entry in question
@@ -81,5 +104,11 @@ public class FilmList {
      */
     public int getSize() {
         return size;
+    }
+
+
+    // EFFECTS: returns an unmodifiable list of thingies in this film list //from JSONSerializationDemo
+    public List<FilmListEntry> getEntryList() {
+        return Collections.unmodifiableList(filmList);
     }
 }
