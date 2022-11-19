@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.swing.*;
 
@@ -149,12 +151,23 @@ public class ApplicationGUI extends JFrame {
     }
 
     /*
+    Effects: returns a list of names
+     */
+    public java.util.List<String> getEntries(FilmList filmList) {
+        List<String> displayList = new ArrayList<String>();
+        for (int i = 0; i < filmList.getSize(); i++) {
+            displayList.add(filmList.getEntry(i).getName());
+        }
+        return displayList;
+    }
+
+    /*
     MODIFIES: this
     EFFECTS: displays the list of names of entries, with an ImageIcon
      */
     public void viewEntries() {
 
-        String[] entries = filmList.getEntries().toArray(new String[filmList.getSize() - 1]);
+        String[] entries = getEntries(filmList).toArray(new String[filmList.getSize() - 1]);
         ImageIcon duck = new ImageIcon("./data/duckpfp.png");
         Image image = duck.getImage(); // transform it
         Image newImage = image.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
@@ -182,7 +195,7 @@ public class ApplicationGUI extends JFrame {
      */
     public void removeEntries() {
 
-        String[] entries = filmList.getEntries().toArray(new String[filmList.getSize() - 1]);
+        String[] entries = getEntries(filmList).toArray(new String[filmList.getSize() - 1]);
         list = new JList(entries); //data has type Object[]
         list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         list.setLayoutOrientation(JList.VERTICAL);

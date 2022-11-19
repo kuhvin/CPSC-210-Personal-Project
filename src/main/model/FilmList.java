@@ -53,12 +53,11 @@ public class FilmList implements Writable {
     Requires: film list initialized
     Effects: displays the names of the films within
      */
-    public List<String> getEntries() {    //delimiter and joiner inspired from stackoverflow
-        List<String> displayList = new ArrayList<String>();
-        for (int i = 0; i < filmList.size(); i++) {
-            displayList.add(filmList.get(i).getName());
-        }
-        return displayList;
+    public String getEntries() {    //delimiter and joiner inspired from stackoverflow
+        String delimiter = ", ";
+        StringJoiner joiner = new StringJoiner(delimiter);
+        filmList.forEach(entry -> joiner.add(entry.getName()));
+        return (joiner.toString());
     }
 
     @Override                           //from JSONSerializationDemo
