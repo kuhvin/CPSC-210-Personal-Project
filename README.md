@@ -24,6 +24,22 @@ of films for certain genres or styles to recommend to those around me.
 - As a user, I want to be able to save my movie lists to a file
 - As a user, I want to be able to load pre-existing movie lists from a file
 
+#### Phase 3
+- As a user, I want to be able to add a type of media with criterion to a list of movies through graphic prompt
+- As a user, I want to be able to see the list of my media as a graphic interface
+- As a user, I want to be able to visually select an item of my list to view
+- As a user, I want to be able to visually select an item of my list to remove
+- As a user, I want to be able to click on a button to save my data
+- As a user, I want to be able to click on a button to load pre-existing data
+
+###### Instructions for Grader for Phase 3
+- You can generate the first required event relating to adding X's to a Y by creating a media entry
+- You can generate the second required event relating to adding X's to a Y by either clicking "Remove Entry" or "View 
+Media List" and selecting an entry to interact with
+- You can locate my visual component by clicking on "View Media List" if there exists at least 1 entry
+- You can save the state of my application by clicking on "Save Data"
+- You can reload the state of my application by clicking on "Load Data"
+
 #### Future/Possible User Stories
 - As a user, I want to be able to sort a list of entries by the criteria within the entry
 - As a user, I want to be able to add lists of entries to a larger, overarching list
