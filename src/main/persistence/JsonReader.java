@@ -1,5 +1,7 @@
 package persistence;
 
+import model.events.Event;
+import model.events.EventLog;
 import model.FilmList;
 
 import java.io.IOException;
@@ -25,6 +27,7 @@ public class JsonReader {
     public FilmList read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
+        EventLog.getInstance().logEvent(new Event("Loaded pre-existing entry list"));
         return parseFilmList(jsonObject);
     }
 
@@ -40,16 +43,16 @@ public class JsonReader {
     }
 
     // EFFECTS: parses filmList from JSON object and returns it
-    private FilmList parseFilmList(JSONObject jsonObject) {
+    private FilmList parseFilmList(JSONObject jo) {
         FilmList fl = new FilmList();
-        addEntries(fl, jsonObject);
+        addEntries(fl, jo);
         return fl;
     }
 
     // MODIFIES: wr
     // EFFECTS: parses thingies from JSON object and adds them to film list
-    private void addEntries(FilmList fl, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("filmList");
+    private void addEntries(FilmList fl, JSONObject jo) {
+        JSONArray jsonArray = jo.getJSONArray("filmList");
         for (Object json : jsonArray) {
             JSONObject nextEntry = (JSONObject) json;
             addEntry(fl, nextEntry);
@@ -58,13 +61,13 @@ public class JsonReader {
 
     // MODIFIES: wr
     // EFFECTS: parses thingy from JSON object and adds it to film list
-    private void addEntry(FilmList fl, JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        String tom = jsonObject.getString("type of media");
-        String genre = jsonObject.getString("genre");
-        int runtime = jsonObject.getInt("runtime");
-        int year = jsonObject.getInt("year");
-        double rating = jsonObject.getDouble("rating");
+    private void addEntry(FilmList fl, JSONObject jo) {
+        String name = jo.getString("name");
+        String tom = jo.getString("type of media");
+        String genre = jo.getString("genre");
+        int runtime = jo.getInt("runtime");
+        int year = jo.getInt("year");
+        double rating = jo.getDouble("rating");
 
         FilmListEntry entry = new FilmListEntry(name, tom, genre, runtime, year, rating);
         fl.addEntry(entry);

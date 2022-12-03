@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.swing.*;
 
+import model.events.EventLog;
 import model.FilmList;
 import model.FilmListEntry;
 import persistence.JsonReader;
@@ -36,7 +37,6 @@ public class ApplicationGUI extends JFrame {
     JButton viewFilmButton;
     JList list;
 
-    JTextArea log;
 
     private static final String JSON_STORE = "./data/filmList.json";
     private JsonWriter jsonWriter;
@@ -47,29 +47,20 @@ public class ApplicationGUI extends JFrame {
      */
     public ApplicationGUI() {
         super("Film Application");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                System.out.println("Event Log Report:");
+                filmList.exitLog(EventLog.getInstance());
+                System.exit(0);
+            }
+        });
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-
-        loadButton = new JButton("Load Data");
-        loadButton.setActionCommand("load");
-        loadButton.addActionListener(this::actionPerformed);
-
-        saveButton = new JButton("Save Data");
-        saveButton.setActionCommand("save");
-        saveButton.addActionListener(this::actionPerformed);
-
-        addFilmButton = new JButton("Add Entry");
-        addFilmButton.setActionCommand("add");
-        addFilmButton.addActionListener(this::actionPerformed);
-
-        removeFilmButton = new JButton("Remove Entry");
-        removeFilmButton.setActionCommand("remove");
-        removeFilmButton.addActionListener(this::actionPerformed);
-
-        viewFilmButton = new JButton("View Media List");
-        viewFilmButton.setActionCommand("view");
-        viewFilmButton.addActionListener(this::actionPerformed);
+        setLoadButton();
+        setSaveButton();
+        setRestButtons();
 
         addButtons();
 
@@ -88,17 +79,43 @@ public class ApplicationGUI extends JFrame {
         add(viewFilmButton, BorderLayout.CENTER);
     }
 
+    private void setLoadButton() {
+        loadButton = new JButton("Load Data");
+        loadButton.setActionCommand("load");
+        loadButton.addActionListener(this::actionPerformed);
+    }
+
+    private void setSaveButton() {
+        saveButton = new JButton("Save Data");
+        saveButton.setActionCommand("save");
+        saveButton.addActionListener(this::actionPerformed);
+    }
+
+    private void setRestButtons() {
+        addFilmButton = new JButton("Add Entry");
+        addFilmButton.setActionCommand("add");
+        addFilmButton.addActionListener(this::actionPerformed);
+
+        removeFilmButton = new JButton("Remove Entry");
+        removeFilmButton.setActionCommand("remove");
+        removeFilmButton.addActionListener(this::actionPerformed);
+
+        viewFilmButton = new JButton("View Media List");
+        viewFilmButton.setActionCommand("view");
+        viewFilmButton.addActionListener(this::actionPerformed);
+    }
+
     /*
     EFFECTS: matches method to command from button
      */
-    private void actionPerformed(ActionEvent actionEvent) {
-        if (actionEvent.getActionCommand().equals("load")) {
+    private void actionPerformed(ActionEvent ae) {
+        if (ae.getActionCommand().equals("load")) {
             loadData();
-        } else if (actionEvent.getActionCommand().equals("save")) {
+        } else if (ae.getActionCommand().equals("save")) {
             saveData();
-        } else if (actionEvent.getActionCommand().equals("add")) {
+        } else if (ae.getActionCommand().equals("add")) {
             inputText();
-        } else if (actionEvent.getActionCommand().equals("remove")) {
+        } else if (ae.getActionCommand().equals("remove")) {
             removeEntries();
         } else {
             viewEntries();
@@ -153,10 +170,10 @@ public class ApplicationGUI extends JFrame {
     /*
     Effects: returns a list of names
      */
-    public java.util.List<String> getEntries(FilmList filmList) {
+    public java.util.List<String> getEntries(FilmList fl) {
         List<String> displayList = new ArrayList<String>();
-        for (int i = 0; i < filmList.getSize(); i++) {
-            displayList.add(filmList.getEntry(i).getName());
+        for (int i = 0; i < fl.getSize(); i++) {
+            displayList.add(fl.getEntry(i).getName());
         }
         return displayList;
     }

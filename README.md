@@ -40,6 +40,20 @@ Media List" and selecting an entry to interact with
 - You can save the state of my application by clicking on "Save Data"
 - You can reload the state of my application by clicking on "Load Data"
 
+#### Phase 4: Task 2
+- The event log will record all events that include pressing a button on the GUI. This means that there will be an event
+recorded for adding and removing entries, viewing the entry list and individual entries, and saving and loading data.
+- Some examples would include
+  - Loaded pre-existing entry list, Tue Nov 29 21:10:52 PST 2022
+  - Entry of name Whiplash added, Tue Nov 29 21:10:53 PST 2022
+  - Viewed details of entry with name Whiplash, Tue Nov 29 21:10:55 PST 2022
+
+#### Phase 4: Task 3
+- After reviewing my UML diagram, I realized that although there could be a small amount of refactoring done, it would
+be insignificant to do so. Small things like using more methods to help group code together in order to make it more
+legible, especially when creating large amounts of instances. If I had more time, I would expand the scope of the
+project, and attempt the "Future/Possible User Stories" I listed bewl
+
 #### Future/Possible User Stories
 - As a user, I want to be able to sort a list of entries by the criteria within the entry
 - As a user, I want to be able to add lists of entries to a larger, overarching list

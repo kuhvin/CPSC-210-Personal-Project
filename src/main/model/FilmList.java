@@ -1,13 +1,12 @@
 package model;
 
+import model.events.Event;
+import model.events.EventLog;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.StringJoiner; //from stackoverflow
+import java.util.*;
 
 //Creates lists of films that have already been watched, sortable by the details in FilmListEntry
 //When a WatchLaterList film has been watched, details can be transferred
@@ -16,9 +15,13 @@ public class FilmList implements Writable {
 
     public final ArrayList<FilmListEntry> filmList;
 
+    private Event event;
+
     public FilmList() {
+        EventLog.getInstance();
         filmList = new ArrayList<>();
     }
+
 
     /*
     Requires: an instance of FilmListEntry that is sound, and not within the list
@@ -27,10 +30,12 @@ public class FilmList implements Writable {
      */
     public String addEntry(FilmListEntry entry) {
         if (filmList.contains(entry)) {
+            EventLog.getInstance().logEvent(new Event("Attempt to add duplicate entry refused"));
             return ("This entry already exists!");
         } else {
             filmList.add(entry);
             size += 1;
+            EventLog.getInstance().logEvent(new Event("Entry of name " + entry.getName() + " added"));
             return ("Entry added!");
         }
     }
@@ -44,6 +49,7 @@ public class FilmList implements Writable {
         if (filmList.contains(entry)) {
             filmList.remove(entry);
             size -= 1;
+            EventLog.getInstance().logEvent(new Event("Entry of name " + entry.getName() + " removed"));
             return ("Entry removed!");
         }
         return ("Entry does not exist!");
@@ -57,6 +63,7 @@ public class FilmList implements Writable {
         String delimiter = ", ";
         StringJoiner joiner = new StringJoiner(delimiter);
         filmList.forEach(entry -> joiner.add(entry.getName()));
+        EventLog.getInstance().logEvent(new Event("Viewed entry list"));
         return (joiner.toString());
     }
 
@@ -92,6 +99,7 @@ public class FilmList implements Writable {
      */
     public String viewEntry(FilmListEntry entry) {
         if (filmList.contains(entry)) {
+            EventLog.getInstance().logEvent(new Event("Viewed details of entry with name " + entry.getName()));
             return entry.getAll();
         } else {
             return ("Entry does not exist!");
@@ -109,5 +117,13 @@ public class FilmList implements Writable {
     // EFFECTS: returns an unmodifiable list of thingies in this film list //from JSONSerializationDemo
     public List<FilmListEntry> getEntryList() {
         return Collections.unmodifiableList(filmList);
+    }
+
+    public void exitLog(EventLog el) {
+        ArrayList<String> e = new ArrayList<>();
+        for (Event next: el) {
+            e.add(next.toString());
+        }
+        System.out.println(e.toString());
     }
 }
