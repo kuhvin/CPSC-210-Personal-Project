@@ -46,6 +46,7 @@ class JsonReaderTest extends JsonTest {                 //tests inspired from JS
                     2023, 8.0, filmList.get(1));
         } catch (IOException e) {
             fail("Couldn't read from file");
+            //
         }
     }
 }
